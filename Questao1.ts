@@ -13,9 +13,28 @@ function longestPalindrome(s: string): number {
         }
     }
 
-    console.log(frequencias);
+    /* Para cada frequência ímpar, realizar a operação ternária:
+        Caso a frequência seja par, incrementar o resultado em: resultado + frequencia
+        Caso a frequência seja ímpar, incrementar o resultado em: resultado + frequencia - 1
+        
+        Também, caso possua alguma frequência ímpar, significa que podemos adicionar
+        um caracter no meio do palíndromo.
+    */
+    let possuiFrequenciasImpares: boolean = false;
+    frequencias.forEach((freq: number) => {
+        resultado = (freq % 2 === 0) ? (
+            resultado + freq
+        ) : (
+            possuiFrequenciasImpares = true,
+            resultado + freq - 1
+        );
+    });
 
-    return 0;
+    if (possuiFrequenciasImpares) {
+        resultado++;
+    }
+
+    return resultado;
 }
 
-longestPalindrome('abscos')
+console.log(longestPalindrome('abccccdd'));
